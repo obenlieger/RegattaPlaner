@@ -11,21 +11,24 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RegattaPlaner</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a href="/Meldung/?guid=@ViewBag.Guid" class="navbar-brand">RegattaPlaner</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav mr-auto">
+                        @if (ViewBag.Guid != null)
+                        {
+                            <li class="nav-item"><a href="/Meldung/?guid=@ViewBag.Guid" class="nav-link">Meldung</a></li>
+                            <li class="nav-item"><a href="/Stammdaten/?guid=@ViewBag.Guid" class="nav-link">Stammdaten</a></li>
+                            // <li class="nav-item"><a href="https://programm.regattaplaner.net/" class="nav-link" target="_blank">Aktuelles Programm</a></li>
+                            <li class="nav-item"><a href="/Meldung/RegattaInfos/?guid=@ViewBag.Guid" class="nav-link">Regatta Info</a></li>
+                            <li class="nav-item"><a href="/Home/Help/?guid=@ViewBag.Guid" class="nav-link">Hilfe</a></li>
+                        }
                     </ul>
+                    @await Html.PartialAsync("_LoginPartial")
                 </div>
             </div>
         </nav>

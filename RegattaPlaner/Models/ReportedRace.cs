@@ -28,6 +28,7 @@ namespace RegattaPlaner.Models
         public Competition Competition { get; set; }
         [Display(Name = "Kommentar")]
         public string Comment { get; set; }
+        public int FreeStartslots { get; set; }
         public int RegattaId { get; set; }
         public Regatta Regatta { get; set; }
         public List<ReportedStartboat> ReportedStartboats { get; set; }

@@ -4,23 +4,36 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using RegattaPlaner.Data;
 using RegattaPlaner.Models;
 
 namespace RegattaPlaner.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+     /*   private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        }*/
 
-        public IActionResult Index()
+        public IActionResult Index(string guid)
         {
-            return View();
+            var model = _context.Regattas.Include(r => r.Club).Include(r => r.Waters);
+
+            ViewBag.Guid = guid;
+
+            return View(model);
         }
 
         public IActionResult Privacy()

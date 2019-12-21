@@ -20,6 +20,16 @@ namespace RegattaPlaner.Models
         public virtual int FromOldclassId { get; set; }
         [Display(Name = "Bis Altersklasse")]
         public virtual int ToOldclassId { get; set; }
+        [Display(Name = "Altersklasse")]
+        public int OldclassId { get; set; }
+        public Oldclass Oldclasses { get; set; }
+        public string Name
+        {
+            get
+            {
+                return string.Format("{0} {1} = {2} EUR", Boatclasses.Name, Oldclasses.Name, Amount);
+            }
+        }
         public virtual List<RegattaStartingFee> RegattaStartingFees { get; set; }
     }
 }

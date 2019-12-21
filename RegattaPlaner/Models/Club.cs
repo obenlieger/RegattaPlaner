@@ -16,6 +16,8 @@ namespace RegattaPlaner.Models
         public virtual string City { get; set; }
         [Display(Name = "Vereinsnummer")]
         public virtual string VNr { get; set; }
+        [EmailAddress]
+        public string EMail { get; set; }
         [Display(Name = "Kurzname")]
         public virtual string ShortName { get; set; }
         public virtual List<Member> Members { get; set; }
